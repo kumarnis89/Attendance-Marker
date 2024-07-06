@@ -1,0 +1,14 @@
+# Ignore all .log files
+*.log
+
+# Ignore all directories named 'temp'
+temp/
+
+# Ignore a specific file
+config.yaml
+
+# Ignore everything in a directory
+/node_modules
+
+# Ignore all .pyc files
+*.pyc

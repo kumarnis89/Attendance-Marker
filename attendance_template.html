@@ -1,0 +1,49 @@
+<!-- attendance_template.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .header.green {
+            background-color: green;
+        }
+        .header.red {
+            background-color: red;
+        }
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header bg_result_based">
+            <h1>Attendance Notification</h1>
+        </div>
+        <div class="content">
+            <h4><p>{{ message }}</p></h4>
+        </div>
+        <div class="footer">
+            <p>This is an automated message. Please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>
