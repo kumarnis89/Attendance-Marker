@@ -90,6 +90,8 @@ def login_to_website(base_url, email, password,m_seq):
         )
         webClock_button.click()
 
+        time.sleep(10)
+
         if(m_seq == 1):
             perform_clock_in(driver)
         else:
@@ -136,12 +138,14 @@ def check_time_and_run():
     retry = 0
     action = CLOCK_IN
     result = False
-    if current_hour == 21 and current_minute == 5:
+    if current_hour == 9 and current_minute == 0:
         action = CLOCK_IN
-    elif current_hour == 1 and current_minute == 0:
+    elif current_hour == 21 and current_minute == 0:
         action = CLOCK_OUT
+    else:
+        return
 
-    while retry != MAX_RETRY_CNT:    
+    while retry != MAX_RETRY_CNT:
         result = login_to_website(base_url, emailId, password,action)
         if result==False:
             retry = retry + 1
