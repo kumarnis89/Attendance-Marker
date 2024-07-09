@@ -60,6 +60,6 @@ def send_attendance_notification(success, date,action):
     send_html_email('Attendance Notification', html_content)
 
 # Example call
-send_attendance_notification(False, '2024-07-07',1)
-send_attendance_notification(True, '2024-07-07',2)
+# send_attendance_notification(False, '2024-07-07',1)
+# send_attendance_notification(True, '2024-07-07',2)
 
