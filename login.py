@@ -154,7 +154,7 @@ def check_time_and_run():
 
     # Send email to user to tell them about attendance status for current date (dd/mm/yyyy)
     formatted_date = current_time.strftime('%d/%m/%Y')
-    emailSender.send_attendance_notification(result,formatted_date)
+    emailSender.send_attendance_notification(result,formatted_date,action)
 
 
 ###########################################

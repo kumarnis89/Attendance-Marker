@@ -37,12 +37,18 @@ def load_html_template(template_path):
     return template
 
 # Example usage
-def send_attendance_notification(success, date):
+def send_attendance_notification(success, date,action):
     template_path = 'attendance_template.html'
-    if success:
-        message = f'Attendance marked successfully for {date}.'
+
+    if action == 1:
+        action_text = "CLOCK IN"
     else:
-        message = f'Attendance failed for {date}. Please mark it manually.'
+        action_text = "CLOCK OUT"
+    
+    if success:
+        message = f'{action_text} marked successfully for {date}.'
+    else:
+        message = f'{action_text} failed for {date}. Please mark it manually.'
 
     html_content = load_html_template(template_path)
     html_content = html_content.replace('{{ message }}',message)
@@ -54,6 +60,6 @@ def send_attendance_notification(success, date):
     send_html_email('Attendance Notification', html_content)
 
 # Example call
-# send_attendance_notification(False, '2024-07-07')
-# send_attendance_notification(True, '2024-07-07')
+send_attendance_notification(False, '2024-07-07',1)
+send_attendance_notification(True, '2024-07-07',2)
 
