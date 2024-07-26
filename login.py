@@ -13,8 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 cm = cp.ConfigManager()
 
 # Accessing properties
-emailId = cm.get_user_email()
-password = cm.get_user_password()
+user_details = cm.get_user_details()
 base_url = cm.get_base_url()
 
 #constants
@@ -127,6 +126,7 @@ def login_to_website(base_url, email, password,m_seq):
         driver.quit()
 
 ##################################
+
 def check_time_and_run():
     # Get current time in IST
     ist = pytz.timezone('Asia/Kolkata')
@@ -138,23 +138,31 @@ def check_time_and_run():
     retry = 0
     action = CLOCK_IN
     result = False
-    if current_hour == 9 and current_minute == 0:
+    if current_hour == 9 and current_minute == 38:
         action = CLOCK_IN
-    elif current_hour == 21 and current_minute == 0:
+    elif current_hour == 23 and current_minute == 42:
         action = CLOCK_OUT
     else:
         return
 
-    while retry != MAX_RETRY_CNT:
-        result = login_to_website(base_url, emailId, password,action)
-        if result==False:
-            retry = retry + 1
-        else: 
-            break
-
-    # Send email to user to tell them about attendance status for current date (dd/mm/yyyy)
     formatted_date = current_time.strftime('%d/%m/%Y')
-    emailSender.send_attendance_notification(result,formatted_date,action)
+
+    for person, details in user_details.items():
+        print(f"Making attendance for {person}")
+        retry = 0
+        result = True
+        emailId = details.get('emailId')
+        password = details.get('password')
+        to_email = details.get('to_email')
+        while retry != MAX_RETRY_CNT:
+            result = login_to_website(base_url, emailId, password,action)
+            if result==False:
+                retry = retry + 1
+            else:
+                break
+
+        # Send email to user to tell them about attendance status for current date (dd/mm/yyyy)
+        emailSender.send_attendance_notification(result,formatted_date,action,to_email)
 
 
 ###########################################

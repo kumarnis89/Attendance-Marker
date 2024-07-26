@@ -9,9 +9,8 @@ cm = cp.ConfigManager()
 # Accessing properties
 from_email = cm.get_from_email()
 from_password = cm.get_from_password()
-to_email = cm.get_to_email()
 
-def send_html_email(subject, html_content):
+def send_html_email(subject, html_content, to_email):
 
     # Create the email content
     msg = MIMEMultipart()
@@ -37,7 +36,7 @@ def load_html_template(template_path):
     return template
 
 # Example usage
-def send_attendance_notification(success, date,action):
+def send_attendance_notification(success, date,action,to_email):
     template_path = 'attendance_template.html'
 
     if action == 1:
@@ -57,9 +56,9 @@ def send_attendance_notification(success, date,action):
         color = 'red'
 
     html_content = html_content.replace('bg_result_based', color)
-    send_html_email('Attendance Notification', html_content)
+    send_html_email('Attendance Notification', html_content,to_email)
 
 # Example call
-# send_attendance_notification(False, '2024-07-07',1)
-# send_attendance_notification(True, '2024-07-07',2)
+# send_attendance_notification(False, '2024-07-07',1,'abc@gmail.com')
+# send_attendance_notification(True, '2024-07-07',2,'abc@gmail.com')
 

@@ -21,17 +21,11 @@ class ConfigManager:
     def get_from_password(self):
         return self.config.get('email', {}).get('from_password')
     
-    def get_to_email(self):
-        return self.config.get('email', {}).get('to_email')
-    
     def get_base_url(self):
         return self.config.get('url', {}).get('base_url')
     
-    def get_user_email(self):
-        return self.config.get('eClerx', {}).get('emailId')
-    
-    def get_user_password(self):
-        return self.config.get('eClerx', {}).get('password')
+    def get_user_details(self):
+        return self.config.get('org', {})
 
 # Example usage:
 if __name__ == '__main__':
